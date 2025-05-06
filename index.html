@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Golden Gate - Quay số may mắn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="img-logo">
+    <img src="/assets/logo.png" alt="logo-golden-gate-image" class="logo">
+  </div>
+
+  <h1 class="main-heading golden-color touppercase">Quay số may mắn</h1>
+
+  <div id="result-number" class="result-number"></div>
+
+  <div id="main" class="game-container">
+    <div id="numberContainer">
+      <!-- 5 số sẽ được gán vào đây -->
+      <div class="number">0</div>
+      <div class="number">0</div>
+      <div class="number">0</div>
+      <div class="number">0</div>
+      <div class="number">0</div>
+    </div>
+  
+    <button id="start-btn" class="btn-quayso touppercase golden-color-grb" onclick="spinNumbers()">Quay số</button>
+
+    <!-- Tick sound when click button -->
+    <audio id="tickSound" src="/assets/tick.mp3" preload="auto"></audio>
+
+    <div id="button-container">
+        <button class="btn btn-cancel">Hủy Kết Quả
+        </button>
+        <button class="btn btn-list">Danh Sách Trúng Thưởng
+        </button>  
+        <button class="btn btn-save">Lưu Kết Quả
+        </button>
+    </div>
+  </div>
+
+  <!-- Pháo hoa -->
+  <canvas id="fireworks-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+
+</body>
+
+<footer class="footer">
+    <div class="custom-bg"  style="text-align: center; margin-top: 30px;">
+      <label for="bg-select">Chọn nền có sẵn: </label>
+      <br></br>
+      <select id="bg-select" onchange="changeBackground()">
+        <option value="">-- Mặc định --</option>
+        <option value="https://png.pngtree.com/background/20220727/original/pngtree-shine-world-map-network-blue-picture-image_1838534.jpg">
+          Hình mặc định 1</option>
+        <option value="https://img.lovepik.com/photo/50032/7538.jpg_wh860.jpg">
+          Hình mặc định 2</option>
+        <option value="https://imgs.699pic.com/images/401/886/454.jpg!seo.v1">
+          Hình mặc định 3</option>
+      </select>
+  
+      <br><br>
+  
+      <label for="bg-url">Nhập link ảnh nền:</label><br>
+      <input type="text" id="bg-url" placeholder="Dán link ảnh vào đây..." style="width: 300px;" />
+      <button onclick="setCustomBackground()">Đặt nền</button>
+  
+      <br><br>
+  
+      <label class="lb-img" for="bg-file">Hoặc chọn ảnh từ máy:</label><br>
+      <input type="file" id="bg-file" accept="image/*" onchange="uploadBackground()" />
+  
+      <div class="footer-content">
+        <p>© 2023 Golden Gate. All rights reserved.</p>
+      </div>
+    </div>
+
+</footer>
+<!-- Thẻ game javascript -->
+<script src="game.js"></script>
+</html>
