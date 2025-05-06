@@ -69,7 +69,7 @@ h1{
   perspective: 1200px;
   margin: 25px 0 50px 0;
 }
-
+.cube-stand,
 .cube {
   width: 100px;
   height: 100px;
@@ -86,7 +86,7 @@ h1{
   background-color: rgb(38, 63, 191);
   color: var(--white);
 }
-
+.cube-stand .face,
 .cube .face {
   position: absolute;
   width: 100%;
@@ -100,12 +100,12 @@ h1{
   background-color: rgb(38, 63, 191);
 }
 
-.cube .front  { transform: translateZ(50px); }
-.cube .back   { transform: rotateY(180deg) translateZ(50px); }
-.cube .top    { transform: rotateX(90deg) translateZ(50px); }
-.cube .bottom { transform: rotateX(-90deg) translateZ(50px); }
-.cube .left   { transform: rotateY(-90deg) translateZ(50px); }
-.cube .right  { transform: rotateY(90deg) translateZ(50px); }
+.cube-stand .front,.cube .front  { transform: translateZ(50px); }
+.cube-stand .back,.cube .back   { transform: rotateY(180deg) translateZ(50px); }
+.cube-stand .top,.cube .top    { transform: rotateX(90deg) translateZ(50px); }
+.cube-stand .bottom,.cube .bottom { transform: rotateX(-90deg) translateZ(50px); }
+.cube-stand .left,.cube .left   { transform: rotateY(-90deg) translateZ(50px); }
+.cube-stand .right,.cube .right  { transform: rotateY(90deg) translateZ(50px); }
 
 .cube.rotate {
   /* Xoay quanh trục X vô hạn với tốc độ 10 vòng/giây */
@@ -141,8 +141,8 @@ h1{
   opacity: 0.7;
 }
 
-/* footer */
-.footer {
-
-
+.custom-bg {
+  color: var(--white);
+  margin-top: 40px;
+  padding-top: 120px;
 }

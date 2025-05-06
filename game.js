@@ -34,11 +34,11 @@ function animateCube(cube, delay) {
 
             const results = [];
             for (let i = 0; i < cubes.length; i++) {
-                const result = await animateCube(cubes[i], i * 1000);
+                const result = await animateCube(cubes[i], i * 2500);
                 results.push(result);
             }
 
-            showMessage(`${results.join('  ')}`);
+            showMessage(`0 0 0 ${results.join('  ')}`);
 			startFireworks(); // Bắt đầu pháo hoa sau khi quay xong
             setTimeout(() => {
                 messageBox.classList.remove('show-message');

@@ -17,7 +17,7 @@
 
   <div id="main" class="game-container">
     <div class="container">
-      <div class="cube" id="cube1">
+      <div class="cube-stand" id="cube1">
           <div class="face front">0</div>
           <div class="face back">0</div>
           <div class="face top">0</div>
@@ -25,35 +25,35 @@
           <div class="face left"></div>
           <div class="face right"></div>
       </div>
-      <div class="cube" id="cube2">
-          <div class="face front">1</div>
-          <div class="face back">1</div>
-          <div class="face top">1</div>
-          <div class="face bottom">1</div>
+      <div class="cube-stand" id="cube2">
+          <div class="face front">0</div>
+          <div class="face back">0</div>
+          <div class="face top">0</div>
+          <div class="face bottom">0</div>
           <div class="face left"></div>
           <div class="face right"></div>
       </div>
-      <div class="cube" id="cube3">
-          <div class="face front">2</div>
-          <div class="face back">2</div>
-          <div class="face top">2</div>
-          <div class="face bottom">2</div>
+      <div class="cube-stand" id="cube3">
+          <div class="face front">0</div>
+          <div class="face back">0</div>
+          <div class="face top">0</div>
+          <div class="face bottom">0</div>
           <div class="face left"></div>
           <div class="face right"></div>
       </div>
       <div class="cube" id="cube4">
-          <div class="face front">3</div>
-          <div class="face back">3</div>
-          <div class="face top">3</div>
-          <div class="face bottom">3</div>
+          <div class="face front">0</div>
+          <div class="face back">0</div>
+          <div class="face top">0</div>
+          <div class="face bottom">0</div>
           <div class="face left"></div>
           <div class="face right"></div>
       </div>
       <div class="cube" id="cube5">
-        <div class="face front">4</div>
-        <div class="face back">4</div>
-        <div class="face top">4</div>
-        <div class="face bottom">4</div>
+        <div class="face front">0</div>
+        <div class="face back">0</div>
+        <div class="face top">0</div>
+        <div class="face bottom">0</div>
         <div class="face left"></div>
         <div class="face right"></div>
     </div>
@@ -84,40 +84,35 @@
 
   <!-- Pháo hoa -->
   <canvas id="fireworks-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+  
+  <!-- Custom background -->
+  <div class="custom-bg"  style="text-align: center; margin-top: 30px;">
+    <label for="bg-select">Chọn nền có sẵn: </label>
+    <br></br>
+    <select id="bg-select" onchange="changeBackground()">
+      <option value="">-- Mặc định --</option>
+      <option value="https://png.pngtree.com/background/20220727/original/pngtree-shine-world-map-network-blue-picture-image_1838534.jpg">
+        Hình mặc định 1</option>
+      <option value="https://img.lovepik.com/photo/50032/7538.jpg_wh860.jpg">
+        Hình mặc định 2</option>
+      <option value="https://imgs.699pic.com/images/401/886/454.jpg!seo.v1">
+        Hình mặc định 3</option>
+    </select>
 
+    <br><br>
+
+    <label for="bg-url">Nhập link ảnh nền:</label><br>
+    <input type="text" id="bg-url" placeholder="Dán link ảnh vào đây..." style="width: 300px;" />
+    <button onclick="setCustomBackground()">Đặt nền</button>
+
+    <br><br>
+
+    <label class="lb-img" for="bg-file">Hoặc chọn ảnh từ máy:</label><br>
+    <input type="file" id="bg-file" accept="image/*" onchange="uploadBackground()" />
+
+  </div>
 </body>
 
-<footer class="footer">
-    <div class="custom-bg"  style="text-align: center; margin-top: 30px;">
-      <label for="bg-select">Chọn nền có sẵn: </label>
-      <br></br>
-      <select id="bg-select" onchange="changeBackground()">
-        <option value="">-- Mặc định --</option>
-        <option value="https://png.pngtree.com/background/20220727/original/pngtree-shine-world-map-network-blue-picture-image_1838534.jpg">
-          Hình mặc định 1</option>
-        <option value="https://img.lovepik.com/photo/50032/7538.jpg_wh860.jpg">
-          Hình mặc định 2</option>
-        <option value="https://imgs.699pic.com/images/401/886/454.jpg!seo.v1">
-          Hình mặc định 3</option>
-      </select>
-  
-      <br><br>
-  
-      <label for="bg-url">Nhập link ảnh nền:</label><br>
-      <input type="text" id="bg-url" placeholder="Dán link ảnh vào đây..." style="width: 300px;" />
-      <button onclick="setCustomBackground()">Đặt nền</button>
-  
-      <br><br>
-  
-      <label class="lb-img" for="bg-file">Hoặc chọn ảnh từ máy:</label><br>
-      <input type="file" id="bg-file" accept="image/*" onchange="uploadBackground()" />
-  
-      <div class="footer-content">
-        <p>© 2023 Golden Gate. All rights reserved.</p>
-      </div>
-    </div>
-
-</footer>
 <!-- Thẻ game javascript -->
 <script src="game.js"></script>
 </html>
