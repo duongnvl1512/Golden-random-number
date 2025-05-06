@@ -16,14 +16,56 @@
   <div id="result-number" class="result-number"></div>
 
   <div id="main" class="game-container">
-    <div id="numberContainer">
-      <!-- 5 số sẽ được gán vào đây -->
-      <div class="number">0</div>
-      <div class="number">0</div>
-      <div class="number">0</div>
-      <div class="number">0</div>
-      <div class="number">0</div>
+    <div class="container">
+      <div class="cube" id="cube1">
+          <div class="face front">0</div>
+          <div class="face back">0</div>
+          <div class="face top">0</div>
+          <div class="face bottom">0</div>
+          <div class="face left"></div>
+          <div class="face right"></div>
+      </div>
+      <div class="cube" id="cube2">
+          <div class="face front">1</div>
+          <div class="face back">1</div>
+          <div class="face top">1</div>
+          <div class="face bottom">1</div>
+          <div class="face left"></div>
+          <div class="face right"></div>
+      </div>
+      <div class="cube" id="cube3">
+          <div class="face front">2</div>
+          <div class="face back">2</div>
+          <div class="face top">2</div>
+          <div class="face bottom">2</div>
+          <div class="face left"></div>
+          <div class="face right"></div>
+      </div>
+      <div class="cube" id="cube4">
+          <div class="face front">3</div>
+          <div class="face back">3</div>
+          <div class="face top">3</div>
+          <div class="face bottom">3</div>
+          <div class="face left"></div>
+          <div class="face right"></div>
+      </div>
+      <div class="cube" id="cube5">
+        <div class="face front">4</div>
+        <div class="face back">4</div>
+        <div class="face top">4</div>
+        <div class="face bottom">4</div>
+        <div class="face left"></div>
+        <div class="face right"></div>
     </div>
+    <div class="cube" id="cube-special">
+      <div class="face front">?</div>
+      <div class="face back">?</div>
+      <div class="face top">?</div>
+      <div class="face bottom">?</div>
+      <div class="face left"></div>
+      <div class="face right"></div>
+  </div>
+</div>
   
     <button id="start-btn" class="btn-quayso touppercase golden-color-grb" onclick="spinNumbers()">Quay số</button>
 

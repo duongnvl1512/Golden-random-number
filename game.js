@@ -1,56 +1,69 @@
-function spinNumbers() {
-  const numberDivs = document.querySelectorAll('.number');
-  const tickSound = document.getElementById('tickSound');
-  const resultNumber = document.getElementById('result-number');
-  let intervals = [];
-  let finalNumbers = [];
+const cubes = document.querySelectorAll('.cube');
+const startButton = document.getElementById('start-btn');
+const messageBox = document.getElementById('result-number');
+const tickSound = document.getElementById('tickSound');
 
-  // Xóa kết quả cũ trước khi quay
-  resultNumber.textContent = "";
-
-  // Âm thanh khi click button quay (nên để bên ngoài vòng lặp)
-  document.addEventListener('click', (event) => {
-    if (event.target.id === 'start-btn') {
-      tickSound.currentTime = 0;
-      tickSound.play();
-    }
-  });
-
-  // Bắt đầu quay
-  numberDivs.forEach((div, index) => {
-    intervals[index] = setInterval(() => {
-      div.textContent = Math.floor(Math.random() * 10);
-    }, 100);
-  });
-
-  // Dừng từng ô theo thứ tự, mỗi ô dừng sau nhau 500ms
-  numberDivs.forEach((div, index) => {
-    setTimeout(() => {
-      clearInterval(intervals[index]);
-      const finalDigit = Math.floor(Math.random() * 10);
-      div.textContent = finalDigit;
-      finalNumbers[index] = finalDigit;
-
-      // Hiệu ứng nháy
-      div.classList.add('flash');
-      setTimeout(() => {
-        div.classList.remove('flash');
-      }, 200);
-
-      // Nếu là số cuối cùng → hiển thị kết quả + pháo hoa
-      if (index === numberDivs.length - 1) {
-        setTimeout(() => {
-          resultNumber.textContent = finalNumbers.join(" ");
-          startFireworks(); // chạy pháo hoa 10 giây
-        }, 500);
-      }
-    }, 500 * (index + 1));
-  });
+function getRandomNumber() {
+    return Math.floor(Math.random() * 10);
 }
+
+function animateCube(cube, delay) {
+    return new Promise(resolve => {
+        setTimeout(() => {
+        	cube.classList.add('rotate');
+                    setTimeout(() => {
+                        const randomNumber = getRandomNumber();
+                        const faces = cube.querySelectorAll('.face');
+                        faces.forEach(face => {
+                            face.textContent = randomNumber;
+                        });
+                        cube.classList.remove('rotate');
+                        resolve(randomNumber);
+                    }, 100);
+                }, delay);
+            });
+        }
+
+        async function startRandom() {
+            startButton.disabled = true;
+            showMessage('Đang quay...');
+            tickSound.currentTime = 0;
+            tickSound.play();
+
+            cubes.forEach(cube => cube.classList.add('rotate'));
+
+            const results = [];
+            for (let i = 0; i < cubes.length; i++) {
+                const result = await animateCube(cubes[i], i * 1000);
+                results.push(result);
+            }
+
+            showMessage(`${results.join('  ')}`);
+			startFireworks(); // Bắt đầu pháo hoa sau khi quay xong
+            setTimeout(() => {
+                messageBox.classList.remove('show-message');
+				stopFireworks(); // Dừng pháo hoa sau khi hiển thị kết quả
+            }, 3000);
+            startButton.disabled = false;
+        }
+
+        function showMessage(message) {
+            messageBox.textContent = message;
+            messageBox.classList.add('show-message');
+        }
+
+        startButton.addEventListener('click', startRandom);
+
+        // cubes.forEach(cube => {
+        //     const faces = cube.querySelectorAll('.face');
+        //     faces.forEach(face => {
+        //         face.textContent = "";
+        //     });
+        // });
 
 
 // Quay tự động lúc vào trang
-window.onload = spinNumbers;
+// window.onload = spinNumbers;
 
 
   // Đổi nền từ dropdown
@@ -96,7 +109,7 @@ window.onload = spinNumbers;
 
 
   // Pháo hoa
-  const canvas = document.getElementById("fireworks-canvas");
+const canvas = document.getElementById("fireworks-canvas");
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
