@@ -5,6 +5,7 @@
     <title>Golden Gate - Quay số may mắn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="assets/themify-icons/themify-icons.css">
 </head>
 <body>
   <div id="img-logo">
@@ -57,13 +58,16 @@
         <div class="face left"></div>
         <div class="face right"></div>
     </div>
-    <div class="cube" id="cube-special">
+
+    <!-- custom cube này lại vì cube này sẽ là cube tách biệt không có animation
+      và sử dụng 1 animation riêng sau đó random  -->
+    <!-- <div class="cube special" id="cube-special">
       <div class="face front">?</div>
       <div class="face back">?</div>
       <div class="face top">?</div>
       <div class="face bottom">?</div>
       <div class="face left"></div>
-      <div class="face right"></div>
+      <div class="face right"></div> -->
   </div>
 </div>
   
@@ -73,12 +77,15 @@
     <audio id="tickSound" src="/assets/tick.mp3" preload="auto"></audio>
 
     <div id="button-container">
-        <button class="btn btn-cancel">Hủy Kết Quả
-        </button>
-        <button class="btn btn-list">Danh Sách Trúng Thưởng
-        </button>  
-        <button class="btn btn-save">Lưu Kết Quả
-        </button>
+        <a class="btn btn-cancel">
+          <i class="ti-close"></i>
+          Hủy Kết Quả</a>
+        <a class="btn btn-list">
+          <i class="ti-list"></i>
+          Danh Sách Trúng Thưởng</a>  
+        <a class="btn btn-save">
+          <i class="ti-save"></i>
+          Lưu Kết Quả</a>
     </div>
   </div>
 

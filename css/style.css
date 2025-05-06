@@ -54,7 +54,7 @@ h1{
 
 /* result number */
 #result-number {
-  margin: 30px 0; 
+  margin: 80px 0 40px 0; 
   font-size: 32px; 
   font-weight: bold;
   color: var(--white); 
@@ -69,6 +69,7 @@ h1{
   perspective: 1200px;
   margin: 25px 0 50px 0;
 }
+
 .cube-stand,
 .cube {
   width: 100px;
@@ -129,13 +130,20 @@ h1{
 
 /* button container */
 #button-container {
-  margin: 40px 10px;
+  margin: 80px 0 40px 0;
   padding: 20px;
+  color: var(--white);
 }
 
-.btn {
+#button-container .btn {
   border: none;
-  padding: 20px;
+  padding: 40px;
+}
+#button-container .btn .ti-close,
+#button-container .btn .ti-list,
+#button-container .btn .ti-save{
+  color: var(--golden-color);
+  padding: 0 20px;
 }
 #button-container .btn:hover {
   opacity: 0.7;

@@ -38,7 +38,7 @@ function animateCube(cube, delay) {
                 results.push(result);
             }
 
-            showMessage(`0 0 0 ${results.join('  ')}`);
+            showMessage(`0  0  0 ${results.join('  ')}`);
 			startFireworks(); // Bắt đầu pháo hoa sau khi quay xong
             setTimeout(() => {
                 messageBox.classList.remove('show-message');
