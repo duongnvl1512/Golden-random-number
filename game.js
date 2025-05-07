@@ -43,7 +43,7 @@ function animateCube(cube, delay) {
             setTimeout(() => {
                 messageBox.classList.remove('show-message');
 				stopFireworks(); // Dừng pháo hoa sau khi hiển thị kết quả
-            }, 3000);
+            }, 5000);
             startButton.disabled = false;
         }
 
@@ -97,15 +97,36 @@ function animateCube(cube, delay) {
     const file = fileInput.files[0];
 
     if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        document.body.style.backgroundImage = `url('${e.target.result}')`;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            const imageUrl = e.target.result;
+            document.body.style.backgroundImage = `url('${imageUrl}')`;
+            document.body.style.backgroundSize = 'cover';
+            document.body.style.backgroundPosition = 'center';
+
+            // Lưu URL vào localStorage
+            localStorage.setItem('backgroundImage', imageUrl);
+            // Hoặc sử dụng sessionStorage nếu bạn muốn xóa khi đóng tab
+            // sessionStorage.setItem('backgroundImage', imageUrl);
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Hàm để tải hình nền đã lưu (gọi khi trang web tải)
+function loadSavedBackground() {
+    const savedImage = localStorage.getItem('backgroundImage');
+    // Hoặc:  const savedImage = sessionStorage.getItem('backgroundImage');
+    if (savedImage) {
+        document.body.style.backgroundImage = `url('${savedImage}')`;
         document.body.style.backgroundSize = 'cover';
         document.body.style.backgroundPosition = 'center';
-      };
-      reader.readAsDataURL(file); // Chuyển file ảnh thành URL base64
     }
-  }
+}
+
+// Gọi hàm loadSavedBackground khi trang web tải
+window.onload = loadSavedBackground;
+
 
 
   // Pháo hoa
