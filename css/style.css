@@ -124,83 +124,57 @@ h1{
 }
 
 
-
-/* cube number section */
+/* game container - img + animation */
 .container {
   display: flex;
+  overflow: hidden;
   width: 100%;
-  align-items: center;
   justify-content: center;
-  gap: 40px;
-  perspective: 1200px;
-  margin: 25px 0 50px 0;
+  margin: 40px 0;
 }
 
-.cube-stand,
-.cube {
-  width: 100px;
-  height: 100px;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.7s ease-in-out;
+.item-container {
+  position: relative; /* Để định vị tuyệt đối cho số */
+  flex-shrink: 0;
+  margin-right: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 2em;
-  font-weight: bold;
-  border: 1px hidden #aaa;
-  transform: rotateX(0deg) rotateY(0deg);
-  background-color: rgb(78, 100, 214);
-  color: var(--white);
+  justify-content: center;
+  width: 160px;
+  height: 160px;
 }
-.cube-stand .face,
-.cube .face {
-  position: absolute;
+
+.item-container.special {
+  margin-right: 0;
+}
+
+.heart-img {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5em;
-  backface-visibility: hidden;
-  border: 2px solid #aaa;
-  background-color: rgb(78, 100, 214);
+  object-fit: cover;
+  border-radius: 50%;
+  /* Animation sẽ được thêm bằng JavaScript */
 }
 
-.cube-stand .front,.cube .front  { transform: translateZ(50px); }
-.cube-stand .back,.cube .back   { transform: rotateY(180deg) translateZ(50px); }
-.cube-stand .top,.cube .top    { transform: rotateX(90deg) translateZ(50px); }
-.cube-stand .bottom,.cube .bottom { transform: rotateX(-90deg) translateZ(50px); }
-.cube-stand .left,.cube .left   { transform: rotateY(-90deg) translateZ(50px); }
-.cube-stand .right,.cube .right  { transform: rotateY(90deg) translateZ(50px); }
-
-.cube.rotate {
-  /* Xoay quanh trục X vô hạn với tốc độ 10 vòng/giây */
-  animation: rotateCubeX 0.1s linear infinite; /* 10 vòng/giây = 1000ms/10 = 0.1s */
+.heart-spinning {
+  animation: rotateY 0.4s linear infinite; /* 5 vòng / 2 giây = 0.4 giây/vòng */
 }
 
-@keyframes rotateCubeX {
-  from { transform: rotateX(0deg) rotateY(0deg); }
-  to   { transform: rotateX(120deg) rotateY(0deg); } /* 10 vòng = 3600 độ */
+@keyframes rotateY {
+  from {
+      transform: rotateY(0deg);
+  }
+  to {
+      transform: rotateY(360deg);
+  }
 }
 
-/* special cube */
-#cube-special {
-  width: 150px;
-  height: 150px;
-  background-color: var(--golden-color-rgb)!important;
-  border: 1px hidden #aaa;
+.number {
+  position: absolute; /* Hiển thị số ở giữa trái tim */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 36px;
+  font-weight: bold;
+  color: var(--golden-color);
 }
-
-#cube-special .face {
-  width: 150px;
-  height: 150px;
-  background-color: var(--golden-color-rgb)!important;
-  color: var(--black)!important;
-}
-#cube-special .front  { transform: translateZ(75px); } /* Đã sửa lại thành 75px */
-#cube-special .back   { transform: rotateY(180deg) translateZ(75px); }
-#cube-special .top    { transform: rotateX(90deg) translateZ(75px); }
-#cube-special .bottom { transform: rotateX(-90deg) translateZ(75px); }
-#cube-special .left   { transform: rotateY(-90deg) translateZ(75px); }
-#cube-special .right  { transform: rotateY(90deg) translateZ(75px); }

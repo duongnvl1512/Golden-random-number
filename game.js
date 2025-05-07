@@ -1,4 +1,6 @@
-const cubes = document.querySelectorAll('.cube');
+const itemContainers = document.querySelectorAll('.item-container');
+const heartImages = document.querySelectorAll('.heart-img');
+const numberDisplays = document.querySelectorAll('.number');
 const startButton = document.getElementById('start-btn');
 const messageBox = document.getElementById('result-number');
 const tickSound = document.getElementById('tickSound');
@@ -7,63 +9,88 @@ function getRandomNumber() {
     return Math.floor(Math.random() * 10);
 }
 
-function animateCube(cube, delay) {
+function initializeNumbers() {
+    numberDisplays.forEach(display => {
+        display.textContent = getRandomNumber();
+    });
+}
+
+function startNumberAnimation(index) {
+    const intervalId = setInterval(() => {
+        numberDisplays[index].textContent = getRandomNumber();
+    }, 100); // Thay đổi số sau mỗi 100ms
+    return intervalId;
+}
+
+function stopNumberAnimation(intervalId) {
+    clearInterval(intervalId);
+}
+
+function spinAndReveal(index) {
     return new Promise(resolve => {
+        const numberAnimationInterval = startNumberAnimation(index);
         setTimeout(() => {
-        	cube.classList.add('rotate');
-                    setTimeout(() => {
-                        const randomNumber = getRandomNumber();
-                        const faces = cube.querySelectorAll('.face');
-                        faces.forEach(face => {
-                            face.textContent = randomNumber;
-                        });
-                        cube.classList.remove('rotate');
-                        resolve(randomNumber);
-                    }, 100);
-                }, delay);
-            });
-        }
+            heartImages[index].classList.remove('heart-spinning');
+            stopNumberAnimation(numberAnimationInterval);
+            const finalNumber = getRandomNumber();
+            numberDisplays[index].textContent = finalNumber;
+            resolve(finalNumber);
+        }, 400); // Thời gian cho một vòng xoay
+    });
+}
 
-        async function startRandom() {
-            startButton.disabled = true;
-            showMessage('Đang quay...');
-            tickSound.currentTime = 0;
-            tickSound.play();
+async function startGame() {
+    startButton.disabled = true;
+    showMessage('Đang quay...');
+    tickSound.currentTime = 0;
+    tickSound.play();
 
-            cubes.forEach(cube => cube.classList.add('rotate'));
+    // Bắt đầu animation xoay cho tất cả trái tim ngay khi bấm nút
+    heartImages.forEach(img => {
+        img.classList.add('heart-spinning');
+    });
 
-            const results = [];
-            for (let i = 0; i < cubes.length; i++) {
-                const result = await animateCube(cubes[i], i * 2500);
-                results.push(result);
-            }
+    // Bắt đầu animation số cho tất cả các số
+    const numberIntervalIds = [];
+    numberDisplays.forEach((display, index) => {
+        numberIntervalIds.push(startNumberAnimation(index));
+    });
 
-            showMessage(`0  0  0 ${results.join('  ')}`);
-			startFireworks(); // Bắt đầu pháo hoa sau khi quay xong
-            setTimeout(() => {
-                messageBox.classList.remove('show-message');
-				stopFireworks(); // Dừng pháo hoa sau khi hiển thị kết quả
-            }, 5000);
-            startButton.disabled = false;
-        }
+    // Chờ 5 giây trước khi bắt đầu hiển thị kết quả
+    await new Promise(resolve => setTimeout(resolve, 5000));
 
-        function showMessage(message) {
-            messageBox.textContent = message;
-            messageBox.classList.add('show-message');
-        }
+    const results = [];
+    for (let i = 0; i < itemContainers.length; i++) {
+        // Dừng animation số cho trái tim hiện tại
+        stopNumberAnimation(numberIntervalIds[i]);
+        const finalNumber = getRandomNumber();
+        numberDisplays[i].textContent = finalNumber;
+        results.push(finalNumber);
 
-        startButton.addEventListener('click', startRandom);
+        // Dừng animation xoay cho trái tim hiện tại ngay sau khi hiển thị kết quả
+        heartImages[i].classList.remove('heart-spinning');
 
-        // cubes.forEach(cube => {
-        //     const faces = cube.querySelectorAll('.face');
-        //     faces.forEach(face => {
-        //         face.textContent = "";
-        //     });
-        // });
+        await new Promise(resolve => setTimeout(resolve, i * 500)); // Độ trễ hiển thị kết quả
+    }
 
+    showMessage(`Kết quả: ${results.join('  ')}`);
+    startFireworks(); // Bắt đầu pháo hoa sau khi quay xong
+    setTimeout(() => {
+        messageBox.classList.remove('show-message');
+        stopFireworks(); // Dừng pháo hoa sau khi hiển thị kết quả
+    }, 5000);
+    startButton.disabled = false;
+}
 
-// Quay tự động lúc vào trang
-// window.onload = spinNumbers;
+function showMessage(message) {
+    messageBox.textContent = message;
+    messageBox.classList.add('show-message');
+}
+
+// Khởi tạo số ngẫu nhiên khi trang tải
+initializeNumbers();
+
+startButton.addEventListener('click', startGame);
 
 
   // Đổi nền từ dropdown

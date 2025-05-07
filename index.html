@@ -18,57 +18,31 @@
 
   <div id="main" class="game-container">
     <div class="container">
-      <div class="cube-stand" id="cube1">
-          <div class="face front">0</div>
-          <div class="face back">0</div>
-          <div class="face top">0</div>
-          <div class="face bottom">0</div>
-          <div class="face left"></div>
-          <div class="face right"></div>
+      <div class="item-container">
+          <img src="/assets/3d-heart.png" alt="Heart-Image" class="heart-img">
+          <span class="number"></span>
       </div>
-      <div class="cube-stand" id="cube2">
-          <div class="face front">0</div>
-          <div class="face back">0</div>
-          <div class="face top">0</div>
-          <div class="face bottom">0</div>
-          <div class="face left"></div>
-          <div class="face right"></div>
+      <div class="item-container">
+          <img src="/assets/3d-heart.png" alt="Heart-Image" class="heart-img">
+          <span class="number"></span>
       </div>
-      <div class="cube-stand" id="cube3">
-          <div class="face front">0</div>
-          <div class="face back">0</div>
-          <div class="face top">0</div>
-          <div class="face bottom">0</div>
-          <div class="face left"></div>
-          <div class="face right"></div>
+      <div class="item-container">
+          <img src="/assets/3d-heart.png" alt="Heart-Image" class="heart-img">
+          <span class="number"></span>
       </div>
-      <div class="cube" id="cube4">
-          <div class="face front">0</div>
-          <div class="face back">0</div>
-          <div class="face top">0</div>
-          <div class="face bottom">0</div>
-          <div class="face left"></div>
-          <div class="face right"></div>
+      <div class="item-container">
+          <img src="/assets/3d-heart.png" alt="Heart-Image" class="heart-img">
+          <span class="number"></span>
       </div>
-      <div class="cube" id="cube5">
-        <div class="face front">0</div>
-        <div class="face back">0</div>
-        <div class="face top">0</div>
-        <div class="face bottom">0</div>
-        <div class="face left"></div>
-        <div class="face right"></div>
-    </div>
-
-    <!-- custom cube này lại vì cube này sẽ là cube tách biệt không có animation
-      và sử dụng 1 animation riêng sau đó random  -->
-    <div class="cube" id="cube-special">
-      <div class="face front">?</div>
-      <div class="face back">?</div>
-      <div class="face top">?</div>
-      <div class="face bottom">?</div>
-      <div class="face left"></div>
-      <div class="face right"></div> 
-  </div>
+      <div class="item-container">
+          <img src="/assets/3d-heart.png" alt="Heart-Image" class="heart-img">
+          <span class="number"></span>
+      </div>
+      <div class="item-container special">
+          <img src="/assets/3d-heart-special.png" alt="Heart-Image" class="heart-img">
+          <span class="number"></span>
+      </div>
+   </div>
 </div>
   
     <button id="start-btn" class="btn-quayso touppercase golden-color-grb " onclick="spinNumbers()">Quay số</button>
@@ -78,7 +52,7 @@
 
     <div id="button-container">
         <a class="btn btn-cancel">
-          <i class="ti-close"></i>
+          <i class="ti-close"></i>  
           Hủy Kết Quả</a>
         <a class="btn btn-list">
           <i class="ti-list"></i>
