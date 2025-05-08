@@ -197,12 +197,12 @@ h1{
 .item-container {
   position: relative; /* Để định vị tuyệt đối cho số */
   flex-shrink: 0;
-  margin-right: 20px;
+  margin-right: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 160px;
-  height: 160px;
+  width: 200px;
+  height: 200px;
 }
 
 .item-container.special {
@@ -213,23 +213,33 @@ h1{
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
-  /* Animation sẽ được thêm bằng JavaScript */
+}
+.heart-img-special {
+  width: 120%!important; /* Để ảnh lớn hơn vùng chứa */
+  height: 120%!important; /* Để ảnh lớn hơn vùng chứa */
+  object-fit: cover;
+}
+.image-container {
+  width: 300px; /* Điều chỉnh kích thước vùng chứa ảnh */
+  height: auto; /* Để chiều cao tự động theo tỷ lệ ảnh */
+  overflow: hidden; /* Ẩn phần ảnh bị tràn ra ngoài khi phóng to */
 }
 
-.heart-spinning {
-  animation: rotateY 0.4s linear infinite; /* 5 vòng / 2 giây = 0.4 giây/vòng */
+.animated-image {
+  width: 100%;
+  height: auto;
+  transform-origin: center center; /* Đặt tâm biến đổi ở giữa ảnh */
+  animation: zoomInOut 1s infinite alternate; /* Gọi animation, thời gian lặp, và hướng lặp */
 }
 
-@keyframes rotateY {
-  from {
-      transform: rotateY(0deg);
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1); /* Kích thước ban đầu */
   }
-  to {
-      transform: rotateY(360deg);
+  100% {
+    transform: scale(1.5); /* Kích thước khi phóng to (điều chỉnh theo ý muốn) */
   }
 }
-
 .number {
   position: absolute; /* Hiển thị số ở giữa trái tim */
   top: 50%;
@@ -237,5 +247,5 @@ h1{
   transform: translate(-50%, -50%);
   font-size: 36px;
   font-weight: bold;
-  color: var(--golden-color);
+  color: var(--white);
 }

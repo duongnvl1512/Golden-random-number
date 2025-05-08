@@ -22,6 +22,7 @@
         .btn-group{
             display: absolute;
             height: auto;
+            font-size: 24px;
             justify-content: left;
             text-align: left;
             margin: 30px 0;
@@ -51,6 +52,8 @@
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            color: red;
+
         }
         th, td {
             border: 1px solid #ddd;
@@ -61,7 +64,7 @@
             text-align: center;
             justify-content: center;
             border: #468946 solid 2px;
-
+            padding: 15px;
             background-color: #f2f2f2;
         }
     </style>
@@ -118,81 +121,87 @@
 
     // Save và lấy dữ liệu từ localStorage
     document.addEventListener('DOMContentLoaded', function() {
-            const resultsTableBody = document.querySelector('#resultsTable tbody');
-            const storedResultsJSON = localStorage.getItem('savedResults');
-            const savedResults = storedResultsJSON ? JSON.parse(storedResultsJSON) : [];
+    const resultsTableBody = document.querySelector('#resultsTable tbody');
+    const storedResultsJSON = localStorage.getItem('savedResults');
+    const savedResults = storedResultsJSON ? JSON.parse(storedResultsJSON) : [];
 
-            // Hiển thị dữ liệu từ trên xuống (duyệt mảng từ cuối về đầu)
-            for (let i = savedResults.length - 1; i >= 0; i--) {
-                const result = savedResults[i];
-                const row = resultsTableBody.insertRow();
+    // Sắp xếp mảng savedResults theo ID tăng dần
+    savedResults.sort((a, b) => a.id - b.id);
 
-                const idCell = row.insertCell();
-                idCell.textContent = result.id;
+    // Hiển thị dữ liệu từ trên xuống với ID đã sắp xếp
+    for (let i = 0; i < savedResults.length; i++) {
+        const result = savedResults[i];
+        const row = resultsTableBody.insertRow(); // Chèn hàng vào cuối bảng
 
-                const timeCell = row.insertCell();
-                timeCell.textContent = result.thoiGian;
+        const idCell = row.insertCell();
+        idCell.textContent = result.id;
 
-                const resultCell = row.insertCell();
-                resultCell.textContent = result.ketQua;
-            }
+        const timeCell = row.insertCell();
+        timeCell.textContent = result.thoiGian;
 
-            // Nếu không có dữ liệu đã lưu
-            if (savedResults.length === 0) {
-                const row = resultsTableBody.insertRow();
-                const emptyCell = row.insertCell();
-                emptyCell.colSpan = 3; // Để lấp đầy cả 3 cột
-                emptyCell.textContent = "Chưa có dữ liệu nào được lưu.";
-                emptyCell.style.textAlign = "center";
-            }
-        });
+        const resultCell = row.insertCell();
+        resultCell.textContent = result.ketQua;
+    }
+
+    // Nếu không có dữ liệu đã lưu
+    if (savedResults.length === 0) {
+        const row = resultsTableBody.insertRow();
+        const emptyCell = row.insertCell();
+        emptyCell.colSpan = 3;
+        emptyCell.textContent = "Chưa có dữ liệu nào được lưu.";
+        emptyCell.style.textAlign = "center";
+    }
+});
 
     // Xóa dữ liệu
     document.addEventListener('DOMContentLoaded', function() {
-            const resultsTableBody = document.querySelector('#resultsTable tbody');
-            const deleteDataButton = document.getElementById('delete-data');
+    const resultsTableBody = document.querySelector('#resultsTable tbody');
+    const deleteDataButton = document.getElementById('delete-data');
 
-            // Hàm để hiển thị dữ liệu trong bảng
-            function renderTable() {
-                resultsTableBody.innerHTML = ''; // Xóa nội dung bảng hiện tại
-                const storedResultsJSON = localStorage.getItem('savedResults');
-                const savedResults = storedResultsJSON ? JSON.parse(storedResultsJSON) : [];
+    // Hàm để hiển thị dữ liệu trong bảng
+    function renderTable() {
+        resultsTableBody.innerHTML = ''; // Xóa nội dung bảng hiện tại
+        const storedResultsJSON = localStorage.getItem('savedResults');
+        const savedResults = storedResultsJSON ? JSON.parse(storedResultsJSON) : [];
 
-                for (let i = savedResults.length - 1; i >= 0; i--) {
-                    const result = savedResults[i];
-                    const row = resultsTableBody.insertRow();
+        // Sắp xếp mảng savedResults theo ID tăng dần
+        savedResults.sort((a, b) => a.id - b.id);
 
-                    const idCell = row.insertCell();
-                    idCell.textContent = result.id;
+        for (let i = 0; i < savedResults.length; i++) {
+            const result = savedResults[i];
+            const row = resultsTableBody.insertRow();
 
-                    const timeCell = row.insertCell();
-                    timeCell.textContent = result.thoiGian;
+            const idCell = row.insertCell();
+            idCell.textContent = result.id;
 
-                    const resultCell = row.insertCell();
-                    resultCell.textContent = result.ketQua;
-                }
+            const timeCell = row.insertCell();
+            timeCell.textContent = result.thoiGian;
 
-                if (savedResults.length === 0) {
-                    const row = resultsTableBody.insertRow();
-                    const emptyCell = row.insertCell();
-                    emptyCell.colSpan = 3;
-                    emptyCell.textContent = "Chưa có dữ liệu nào được lưu.";
-                    emptyCell.style.textAlign = "center";
-                }
-            }
+            const resultCell = row.insertCell();
+            resultCell.textContent = result.ketQua;
+        }
 
-            // Gọi hàm renderTable để hiển thị dữ liệu ban đầu
-            renderTable();
+        if (savedResults.length === 0) {
+            const row = resultsTableBody.insertRow();
+            const emptyCell = row.insertCell();
+            emptyCell.colSpan = 3;
+            emptyCell.textContent = "Chưa có dữ liệu nào được lưu.";
+            emptyCell.style.textAlign = "center";
+        }
+    }
 
-            // Xử lý sự kiện click cho nút "Xóa dữ liệu"
-            deleteDataButton.addEventListener('click', function() {
-                const confirmation = confirm("Bạn có chắc chắn muốn xóa toàn bộ dữ liệu đã lưu?");
-                if (confirmation) {
-                    localStorage.removeItem('savedResults'); // Xóa dữ liệu khỏi localStorage
-                    renderTable(); // Cập nhật lại bảng (nó sẽ hiển thị là không có dữ liệu)
-                    alert("Toàn bộ dữ liệu đã được xóa.");
-                }
-            });
-        });
+    // Gọi hàm renderTable để hiển thị dữ liệu ban đầu (sau khi đã sắp xếp)
+    renderTable();
+
+    // Xử lý sự kiện click cho nút "Xóa dữ liệu"
+    deleteDataButton.addEventListener('click', function() {
+        const confirmation = confirm("Bạn có chắc chắn muốn xóa toàn bộ dữ liệu đã lưu?");
+        if (confirmation) {
+            localStorage.removeItem('savedResults'); // Xóa dữ liệu khỏi localStorage
+            renderTable(); // Cập nhật lại bảng (nó sẽ hiển thị là không có dữ liệu)
+            alert("Toàn bộ dữ liệu đã được xóa.");
+        }
+    });
+});
 </script>
 </html>

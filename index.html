@@ -5,7 +5,7 @@
     <title>Golden Gate - Quay số may mắn</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="assets/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="/assets/themify-icons/themify-icons.css">
 </head>
 <body>
   <div id="img-logo">
@@ -19,7 +19,7 @@
   <div id="main" class="game-container">
     <div class="container">
       <div class="item-container">
-          <img src="/assets/3d-heart.png" alt="Heart-Image" class="heart-img">
+          <img src="/assets/3d-heart.png" alt="Heart-Image" class="heart-img ">
           <span class="number"></span>
       </div>
       <div class="item-container">
@@ -39,7 +39,7 @@
           <span class="number"></span>
       </div>
       <div class="item-container special">
-          <img src="/assets/3d-heart-special.png" alt="Heart-Image" class="heart-img">
+          <img src="/assets/3d-heart-special.png" alt="Heart-Image" class="heart-img heart-img-special">
           <span class="number"></span>
       </div>
    </div>
@@ -65,11 +65,14 @@
 
   <!-- Pháo hoa -->
   <canvas id="fireworks-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></canvas>
+  <!-- background music -->
+  <audio id="nhacNen" loop autoplay>
+    <source src="assets/bg-music.mp3" type="audio/mpeg">
+  </audio>
   
   <!-- Custom background -->
   <div class="custom-bg"  style="text-align: center; margin-top: 30px;">
     <label for="bg-select">Chọn nền có sẵn: </label>
-    <br></br>
     <select id="bg-select" onchange="changeBackground()">
       <option value="">-- Mặc định --</option>
       <option value="https://png.pngtree.com/background/20220727/original/pngtree-shine-world-map-network-blue-picture-image_1838534.jpg">
@@ -82,13 +85,13 @@
 
     <br><br>
 
-    <label for="bg-url">Nhập link ảnh nền:</label><br>
+    <label for="bg-url">Nhập link ảnh nền:</label>
     <input type="text" id="bg-url" placeholder="Dán link ảnh vào đây..." style="width: 300px;" />
     <button onclick="setCustomBackground()">Đặt nền</button>
 
     <br><br>
 
-    <label class="lb-img" for="bg-file">Hoặc chọn ảnh từ máy:</label><br>
+    <label class="lb-img" for="bg-file">Hoặc chọn ảnh từ máy:</label>
     <input type="file" id="bg-file" accept="image/*" onchange="uploadBackground()" />
 
   </div>

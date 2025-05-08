@@ -36,7 +36,7 @@ async function startGame() {
     tickSound.play();
 
     heartImages.forEach(img => {
-        img.classList.add('heart-spinning');
+        img.classList.add('animated-image');
         img.classList.remove('fade-in');
     });
 
@@ -57,13 +57,18 @@ async function startGame() {
     for (let i = 0; i < itemContainers.length; i++) {
         stopNumberAnimation(numberIntervalIds[i]);
         numberDisplays[i].textContent = results[i];
-        heartImages[i].classList.remove('heart-spinning');
+        heartImages[i].classList.remove('animated-image');
         heartImages[i].classList.add('zoom-in'); // Thay đổi thành zoom-in
         await new Promise(resolve => setTimeout(resolve, i * 500));
     }
 
     showMessage(`Kết quả: ${results.slice(3).map(num => num.toString()).join('')}`);
     startFireworks();
+
+    // Tạo và phát âm thanh kết quả
+    const resultSound = new Audio('/assets/result-sound.mp3'); // Đảm bảo bạn có file 'result-sound.mp3'
+    resultSound.play();
+
     setTimeout(() => {
         messageBox.classList.remove('show-message');
         stopFireworks();
