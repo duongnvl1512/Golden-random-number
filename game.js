@@ -36,7 +36,6 @@ async function startGame() {
     tickSound.play();
 
     heartImages.forEach(img => {
-        img.classList.add('animated-image');
         img.classList.remove('fade-in');
     });
 
@@ -62,11 +61,16 @@ async function startGame() {
         await new Promise(resolve => setTimeout(resolve, i * 500));
     }
 
+    heartImages.forEach(img => {
+        img.classList.remove('zoom-in');
+        img.classList.add('animated-image'); 
+    });
+
     showMessage(`Kết quả: ${results.slice(3).map(num => num.toString()).join('')}`);
     startFireworks();
 
     // Tạo và phát âm thanh kết quả
-    const resultSound = new Audio('/assets/result-sound.mp3'); // Đảm bảo bạn có file 'result-sound.mp3'
+    const resultSound = new Audio('assets/result-sound.mp3'); // Đảm bảo bạn có file 'result-sound.mp3'
     resultSound.play();
 
     setTimeout(() => {
@@ -426,5 +430,3 @@ document.addEventListener('DOMContentLoaded', function() {
       alert(`Đã lưu kết quả với ID ${newId} vào lúc ${currentTime}: ${resultValue}`);
     });
   });
-
-//   Button show list

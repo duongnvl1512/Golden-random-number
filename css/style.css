@@ -50,17 +50,19 @@ body {
   font-weight: 700;
 }
 h1{
-  font-size: 60px;
+  font-size: 36px;
 }
 
 /* result number */
 #result-number {
   margin: 40px 0 40px 0; 
-  font-size: 32px; 
+  font-size: 28px; 
   font-weight: bold;
   color: var(--golden-color); 
 }
-
+span{
+  font-size: 52px!important;
+}
 
 /* button quay so */
 .btn-quayso {
@@ -144,52 +146,12 @@ h1{
   to { transform: scale(1); opacity: 1;}
 }
 
-/* Show list popup */
-.popup-container {
-  display: none; /* Ẩn mặc định */
-  position: fixed; /* Cố định trên màn hình */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
-  z-index: 1000; /* Đảm bảo hiển thị trên các phần tử khác */
-  justify-content: center;
-  align-items: center;
-}
-
-.popup-content {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  position: relative; /* Để định vị nút đóng */
-  width: 80%; /* Điều chỉnh độ rộng popup */
-  max-width: 500px; /* Giới hạn độ rộng tối đa */
-}
-
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  cursor: pointer;
-}
-
-/* Thêm CSS tùy chỉnh cho nội dung danh sách trúng thưởng nếu cần */
-#prizeList {
-  margin-top: 15px;
-}
-
-
 
 /* game container - img + animation */
 .container {
   display: flex;
   overflow: hidden;
-  width: 100%;
+  height: auto;
   justify-content: center;
   margin: 40px 0;
 }
@@ -197,7 +159,7 @@ h1{
 .item-container {
   position: relative; /* Để định vị tuyệt đối cho số */
   flex-shrink: 0;
-  margin-right: 10px;
+  margin-right: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -210,13 +172,13 @@ h1{
 }
 
 .heart-img {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   object-fit: cover;
 }
 .heart-img-special {
-  width: 120%!important; /* Để ảnh lớn hơn vùng chứa */
-  height: 120%!important; /* Để ảnh lớn hơn vùng chứa */
+  width: 150%!important; /* Để ảnh lớn hơn vùng chứa */
+  height: 150%!important; /* Để ảnh lớn hơn vùng chứa */
   object-fit: cover;
 }
 .image-container {
